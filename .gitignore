@@ -1,0 +1,8 @@
+api/HELP.md
+api/target/
+api/.mvn/wrapper/maven-wrapper.jar
+api/!**/src/main/**/target/
+api/!**/src/test/**/target/
+
+### VS Code ###
+.vscode/
