@@ -5,4 +5,4 @@ api/!**/src/main/**/target/
 api/!**/src/test/**/target/
 
 ### VS Code ###
-.vscode/
+api/.vscode/
