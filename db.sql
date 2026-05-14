@@ -11,7 +11,7 @@ CREATE TABLE
         `email` VARCHAR(255) NOT NULL UNIQUE,
         `password` CHAR(60) NOT NULL,
         `role` ENUM ("CLIENT", "OWNER") NOT NULL,
-        `createdAt` DATE DEFAULT (CURRENT_DATE),
+        `createdAt` TIMESTAMP DEFAULT NOW (),
         PRIMARY KEY (`id`)
     );
 
@@ -21,7 +21,7 @@ CREATE TABLE
         `name` VARCHAR(100) NOT NULL UNIQUE,
         `desc` TEXT NOT NULL,
         `owner_id` BIGINT NOT NULL,
-        `createdAt` DATE DEFAULT (CURRENT_DATE),
+        `createdAt` TIMESTAMP DEFAULT NOW (),
         PRIMARY KEY (`id`),
         FOREIGN KEY (`owner_id`) REFERENCES users_tb (id)
     );
@@ -35,7 +35,7 @@ CREATE TABLE
         `qtd` INT NOT NULL,
         `imgUrl` VARCHAR(255),
         `store_id` BIGINT NOT NULL,
-        `createdAt` DATE DEFAULT (CURRENT_DATE),
+        `createdAt` TIMESTAMP DEFAULT NOW (),
         PRIMARY KEY (`id`),
         FOREIGN KEY (`store_id`) REFERENCES stores_tb (id)
     );
@@ -53,7 +53,7 @@ CREATE TABLE
             "CANCELED"
         ) NOT NULL,
         `value` DECIMAL(8, 2) NOT NULL,
-        `createdAt` DATE DEFAULT (CURRENT_DATE),
+        `createdAt` TIMESTAMP DEFAULT NOW (),
         PRIMARY KEY (`id`),
         FOREIGN KEY (`client_id`) REFERENCES users_tb (id),
         FOREIGN KEY (`store_id`) REFERENCES stores_tb (id)
@@ -78,7 +78,7 @@ CREATE TABLE
         `method` ENUM ("DEBIT", "CREDIT", "BOLETO", "PIX") NOT NULL,
         `status` ENUM ("PENDING", "CONFIRMED", "FAILED") NOT NULL,
         `value` DECIMAL(8, 2) NOT NULL,
-        `createdAt` DATE DEFAULT (CURRENT_DATE),
+        `createdAt` TIMESTAMP DEFAULT NOW (),
         PRIMARY KEY (`id`),
         FOREIGN KEY (`product_id`) REFERENCES products_tb (id)
     );
@@ -90,7 +90,7 @@ CREATE TABLE
         `product_id` BIGINT NOT NULL,
         `rate` INT NOT NULL,
         `comment` TEXT,
-        `createdAt` DATE DEFAULT (CURRENT_DATE),
+        `createdAt` TIMESTAMP DEFAULT NOW (),
         PRIMARY KEY (`id`),
         FOREIGN KEY (`user_id`) REFERENCES users_tb (id),
         FOREIGN KEY (`product_id`) REFERENCES products_tb (id)
