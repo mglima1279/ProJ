@@ -7,3 +7,4 @@ api/!**/src/test/**/target/
 ### VS Code ###
 api/.vscode/
 api/.mvn/
+.vscode/
