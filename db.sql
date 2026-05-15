@@ -4,15 +4,38 @@ CREATE DATABASE IF NOT EXISTS `store_db`;
 
 USE `store_db`;
 
+SET
+    GLOBAL event_scheduler = ON;
+
 CREATE TABLE users_tb (
     `id` BIGINT AUTO_INCREMENT,
     `name` VARCHAR(100) NOT NULL,
     `email` VARCHAR(255) NOT NULL UNIQUE,
     `password` CHAR(60) NOT NULL,
     `role` ENUM ("CLIENT", "OWNER") NOT NULL,
+    `is_verified` BOOLEAN DEFAULT 0,
     `created_at` TIMESTAMP DEFAULT NOW(),
     PRIMARY KEY (`id`)
 );
+
+CREATE EVENT del_unverified_user ON SCHEDULE EVERY 1 HOUR DO
+DELETE FROM
+    users_tb
+WHERE
+    is_verified = 0
+    AND created_at < NOW() - INTERVAL 1 HOUR;
+
+CREATE TABLE pin_session_tb(
+    `email` VARCHAR(255) NOT NULL UNIQUE,
+    `pin` VARCHAR(6) NOT NULL,
+    `expires_at` TIMESTAMP NOT NULL
+);
+
+CREATE EVENT del_expired_pin_session ON SCHEDULE EVERY 5 MINUTE DO
+DELETE FROM
+    pin_session_tb
+WHERE
+    expires_at < NOW();
 
 CREATE TABLE stores_tb (
     `id` BIGINT AUTO_INCREMENT,
