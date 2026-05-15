@@ -32,7 +32,7 @@ public class Store {
 
     @ManyToOne
     @JoinColumn(name = "owner_id")
-    private User ownerId;
+    private User owner;
 
     private LocalDateTime createdAt;
 }

@@ -26,7 +26,7 @@ CREATE TABLE stores_tb (
 
 CREATE TABLE products_tb (
     `id` BIGINT AUTO_INCREMENT,
-    `name` VARCHAR(100) NOT NULL UNIQUE,
+    `name` VARCHAR(100) NOT NULL,
     `desc` TEXT NOT NULL,
     `price` DECIMAL(8, 2) NOT NULL,
     `qtd` INT NOT NULL,
