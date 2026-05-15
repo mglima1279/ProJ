@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import com.api.entities.User;
+import com.api.exceptions.CustomException;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
@@ -76,7 +77,7 @@ public class JwtService {
 
         } catch (ExpiredJwtException | MalformedJwtException | UnsupportedJwtException | SignatureException
                 | IllegalArgumentException e) {
-            throw new RuntimeException(HttpStatus.UNAUTHORIZED + "Token inválido");
+            throw new CustomException(HttpStatus.UNAUTHORIZED, "Token inválido");
         }
     }
 }

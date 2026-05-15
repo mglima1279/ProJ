@@ -18,12 +18,8 @@ public class ApiApplication {
 
     @PostConstruct
     public void printPort() {
-        System.out.println("");
-        System.out.println("--------------------------------------------");
-        System.out.println("");
+        System.out.println("\n--------------------------------------------\n");
         System.out.println("Server is running on port: " + port);
-        System.out.println("");
-        System.out.println("--------------------------------------------");
-        System.out.println("");
+        System.out.println("\n--------------------------------------------\n");
     }
 }
