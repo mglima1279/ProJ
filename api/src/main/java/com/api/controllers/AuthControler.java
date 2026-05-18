@@ -39,8 +39,10 @@ public class AuthControler {
     }
 
     @PostMapping("/register/pin")
-    public ResponseEntity<User> verifyPin(@RequestBody PinSession request) {
-        return ResponseEntity.ok(authService.verifyUser(request));
+    public ResponseEntity<String> verifyPin(@RequestBody PinSession request) {
+        User user = authService.verifyUser(request);
+        String token = jwtService.generateToken(user);
+        return ResponseEntity.ok(token);
     }
 
     @PostMapping("/login")
